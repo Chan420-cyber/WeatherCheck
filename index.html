@@ -16,45 +16,36 @@
     </div>
 
     <script>
-         
-         async function getWeather() {
-            
-         let city  =  document.getElementById('city').value
+async function getWeather() {
+    const city = document.getElementById('city').value.trim();
 
-         if(!city){
-            alert('Please Enter the city name')
-            return;
-         }
+    if (!city) {
+        alert('Please enter the city name');
+        return;
+    }
 
-         const apiKey = '78e30287640527d999e7930b6472a18c2'; 
-         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8e30287640527d999e7930b6472a18c2&units=metric`
+    const apiKey = 'YOUR_NEW_API_KEY_HERE';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-         try{
-  
-         let response  =  await  fetch(url)
-         let data = await response.json()
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-         console.log(data)
+        if (data.cod !== 200) {
+            throw new Error(data.message);
+        }
 
-         if(data.cod !==200){
-            throw new Error(data.message)
-         }
-
-         document.getElementById('result').innerHTML = 
-         `<h4>${data.name}</h4>
-          <h3>${data.main.temp}</h3>
-          <p>${data.weather[0].description}</p>
-          <h4>${data.visibility}</h4>
-          <h4>${data.wind.speed}</h4>
-         `
-
-
-         }catch(error){
-            document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`
-         }
-               
-         }
-
-    </script>   
+        document.getElementById('result').innerHTML = `
+            <h4>${data.name}</h4>
+            <h3>${data.main.temp} °C</h3>
+            <p>${data.weather[0].description}</p>
+            <p>Visibility: ${data.visibility} m</p>
+            <p>Wind: ${data.wind.speed} m/s</p>
+        `;
+    } catch (error) {
+        document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`;
+    }
+}
+</script>
 </body>
 </html>
