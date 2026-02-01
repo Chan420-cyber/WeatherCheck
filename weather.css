@@ -1,0 +1,33 @@
+body{
+            background: linear-gradient(to right,#151B54,#87CEEB);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: cursive;
+        }
+
+        .weather{
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #488AC7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        button{
+            background-color: #6495ED;
+            color: azure;
+            border: none;
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        input{
+            padding: 10px;
+            width: 90%;
+            border: 1px solid black;
+            margin-bottom: 15px;
+        }
